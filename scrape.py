@@ -21,7 +21,7 @@ from sqlalchemy import create_engine, MetaData, Table, select, insert
 from bs4 import BeautifulSoup
 import requests
 
-engine = create_engine('mysql+pymysql://u763548664_T7rfT:Camurt3412!@sql147.main-hosting.eu/u763548664_cW8Gc')
+engine = create_engine('mysql+pymysql://USERNAME:PASSWORD@HOST/DBNAME')
 connection = engine.connect()
 metadata = MetaData()
 
