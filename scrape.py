@@ -17,28 +17,18 @@
 # print(article_paragraph_one)
 
 
-from sqlalchemy import create_engine, MetaData, Table, select, insert
 from bs4 import BeautifulSoup
+from db_connection import data_table, connection
 import requests
 
-engine = create_engine('mysql+pymysql://u763548664_T7rfT:Camurt3412!@sql147.main-hosting.eu/u763548664_cW8Gc')
-connection = engine.connect()
-metadata = MetaData()
 
-data_table = Table('data-scraping', metadata, autoload=True, autoload_with=engine)
-
-
-source = requests.get('https://rubberducks.herokuapp.com/').text
+duck_website = 'https://shop.justducks.co.uk/characters-2?limitstart=0?limitstart=0?limitstart=0?limitstart=0&limit=0'
+source = requests.get(duck_website).text
 soup = BeautifulSoup(source, 'lxml')
 
-for article in soup.find_all("div", class_="article"):
-    title = article.find('h2').text
-    content = article.find('p').text
-    stmt = (
-        insert(data_table).
-        values(data_title=title, data_content=content)
-    )
-    connection.execute(stmt)
+
+main_content = soup.find('div', class_='hikashop_product')
+print(main_content)
 
 
 
