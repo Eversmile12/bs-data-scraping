@@ -13,6 +13,8 @@ db_uri = "mysql+pymysql://{username}:{password}@{host}:{port}/{dbname}".format(
     port = os.getenv('DB_PORT')
 )
 
+
+
 engine = create_engine(db_uri)
 connection = engine.connect()
 print("Connecting to AWS RDS...")
